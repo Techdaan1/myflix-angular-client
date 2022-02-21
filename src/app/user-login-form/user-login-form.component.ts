@@ -1,13 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-// import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
-
-// brings in the API calls
 import { UserRegistrationService } from '../fetch-api-data.service';
-
-// displays notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',
@@ -20,7 +15,8 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: UserRegistrationService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -33,6 +29,7 @@ export class UserLoginFormComponent implements OnInit {
         this.snackBar.open('user has logged in', 'OK', {
           duration: 2000,
         });
+        this.router.navigate(['movies']);
       },
       (response) => {
         this.snackBar.open(response, 'OK', {
