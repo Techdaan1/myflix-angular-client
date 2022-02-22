@@ -23,6 +23,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { MovieDescriptionComponent } from './movie-description/movie-description.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -40,6 +44,10 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileComponent,
     UserEditComponent,
+    NavBarComponent,
+    GenreViewComponent,
+    DirectorViewComponent,
+    MovieDescriptionComponent,
   ],
   imports: [
     BrowserModule,
