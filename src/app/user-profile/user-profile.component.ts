@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import { RemoveUserComponent } from '../remove-user/remove-user.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,6 +14,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 })
 export class UserProfileComponent implements OnInit {
   user: any = {};
+  favMovies: any = {};
 
   constructor(
     public dialog: MatDialog,
@@ -26,8 +28,42 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserProfile(): void {
-    this.fetchApiData.getUserProfile().subscribe((resp: any) => {
-      this.user = resp;
+    this.fetchApiData.getUserProfile().subscribe((res: any) => {
+      this.user = res;
+      console.log(this.user);
+      return this.user;
+    });
+  }
+
+  openEditUserDialog(): void {
+    this.dialog.open(UserEditComponent, {
+      width: '280px',
+    });
+  }
+
+  openRemoveUserDialog(): void {
+    this.dialog.open(RemoveUserComponent, {
+      width: '280px',
+    });
+  }
+
+  getFavMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((res: any) => {
+      this.favMovies = res.filter((movie: any) => {
+        return this.user.FavouriteMovies.includes(movie._id);
+      });
+      console.log(this.favMovies);
+      return this.favMovies;
+    });
+  }
+
+  removeFavMovies(id: string): void {
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open('Movie has been removed from favorite list', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+      return this.favMovies;
     });
   }
 }
