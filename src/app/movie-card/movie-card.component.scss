@@ -1,3 +1,72 @@
-.mat-card-header {
-  justify-content: center;
+.movie-card {
+  background-color: blue;
+  padding-bottom: 15px;
+}
+
+.mat-card {
+  margin: 10px;
+}
+
+.favourite-icon {
+  align-items: right;
+}
+
+.nav-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.nav-wrapper > ul {
+  display: flex;
+}
+
+.nav-wrapper--scrollable {
+  padding: 0 32px;
+}
+
+.nav-arrow {
+  position: absolute;
+  display: none;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  border: 1px solid #2399e5;
+  background: #2399e5;
+  font: 14px/1 FontAwesome;
+  color: #fff;
+  cursor: pointer;
+}
+.nav-wrapper--scrollable .nav-arrow {
+  display: block;
+}
+.nav-arrow:hover {
+  border: 1px solid #1f89ce;
+  background: #1f89ce;
+}
+
+.nav-arrow:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-arrow--left {
+  left: 0;
+}
+.nav-arrow--left:before {
+  content: "\f053";
+}
+
+.nav-arrow--right {
+  right: 0;
+}
+.nav-arrow--right:before {
+  content: "\f054";
+}
+.nav-arrow--disabled,
+.nav-arrow--disabled:hover {
+  background: #ccc;
+  border: #ddd;
+  cursor: default;
 }
