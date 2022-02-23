@@ -29,7 +29,6 @@ import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { MovieDescriptionComponent } from './movie-description/movie-description.component';
 import { RemoveUserComponent } from './remove-user/remove-user.component';
-import { FavouriteComponent } from './favourite/favourite.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -52,7 +51,6 @@ const appRoutes: Routes = [
     DirectorViewComponent,
     MovieDescriptionComponent,
     RemoveUserComponent,
-    FavouriteComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,13 @@
-.tool-bar,
 .logout {
+  color: white;
+  background-color: black;
+  font-size: 20px;
+}
+
+.tool-bar {
+  justify-content: flex-end;
+  gap: 36px;
+  border-bottom: 1px solid;
   color: white;
   background-color: black;
   font-size: 20px;
