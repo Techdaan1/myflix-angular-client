@@ -4,8 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { GenreViewComponent } from '../genre-view/genre-view.component';
+import { DirectorViewComponent } from '../director-view/director-view.component';
+import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
 import { UserEditComponent } from '../user-edit/user-edit.component';
-import { RemoveUserComponent } from '../remove-user/remove-user.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,6 +16,7 @@ import { RemoveUserComponent } from '../remove-user/remove-user.component';
 })
 export class UserProfileComponent implements OnInit {
   user: any = {};
+  Username = localStorage.getItem('user');
   favMovies: any = {};
 
   constructor(
@@ -25,14 +28,48 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.getFavoriteMovies();
   }
 
   getUserProfile(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+        this.user = res;
+        console.log(this.user);
+        return this.user;
+      });
+    }
+  }
+
+  getFavoriteMovies(): void {
+    const user = localStorage.getItem('user');
     this.fetchApiData.getUserProfile().subscribe((res: any) => {
-      this.user = res;
-      console.log(this.user);
-      return this.user;
+      this.favMovies = res.FavoriteMovies;
+      console.log(this.favMovies);
+      return this.favMovies;
     });
+  }
+
+  removeFavMovies(MovieID: string, title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((res: any) => {
+      console.log(res);
+      this.snackBar.open('Movie has been removed from favorites', 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+      return this.favMovies;
+    });
+  }
+
+  deleteUser(): void {
+    this.fetchApiData.deleteUserProfile().subscribe(() => {
+      this.snackBar.open(`${this.Username} has been removed!`, 'OK', {
+        duration: 4000,
+      });
+      localStorage.clear();
+    });
+    this.router.navigate(['welcome']);
   }
 
   openEditUserDialog(): void {
@@ -41,29 +78,24 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  openRemoveUserDialog(): void {
-    this.dialog.open(RemoveUserComponent, {
-      width: '280px',
+  openGenreDialog(name: string, description: string): void {
+    this.dialog.open(GenreViewComponent, {
+      data: { name: name, description: description },
+      width: '300px',
     });
   }
 
-  getFavMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((res: any) => {
-      this.favMovies = res.filter((movie: any) => {
-        return this.user.FavouriteMovies.includes(movie._id);
-      });
-      console.log(this.favMovies);
-      return this.favMovies;
+  openDirectorDialog(name: string, bio: string, birthdate: string): void {
+    this.dialog.open(DirectorViewComponent, {
+      data: { name: name, bio: bio, birth: birthdate },
+      width: '300px',
     });
   }
 
-  removeFavMovies(id: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
-      this.snackBar.open('Movie has been removed from favorite list', 'OK', {
-        duration: 2000,
-      });
-      this.ngOnInit();
-      return this.favMovies;
+  openMovieDescDialog(title: string, description: string): void {
+    this.dialog.open(MovieDescriptionComponent, {
+      data: { title: title, description: description },
+      width: '300px',
     });
   }
 }

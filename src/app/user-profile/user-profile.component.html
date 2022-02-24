@@ -2,10 +2,12 @@
 <div class="user-profile">
   <mat-card class="usercard">
     <mat-card-header>
-      <mat-card-title class="usercard-greeting"
-        >Hey {{ user.Username }}!</mat-card-title
-      >
+      <mat-card-title>My Profile</mat-card-title>
     </mat-card-header>
+    <mat-card-content class="usercard-greeting"
+      >Hey {{ user.Username }}!</mat-card-content
+    >
+
     <mat-card-content class="usercard-content">
       <p><b>Username:</b> {{ user.Username }}</p>
       <p><b>Email:</b> {{ user.Email }}</p>
@@ -13,6 +15,7 @@
     </mat-card-content>
     <mat-card-actions class="usercard-actions">
       <button
+        class="edit-button"
         mat-raised-button
         (click)="openEditUserDialog()"
         style="margin-right: 10px"
@@ -20,7 +23,12 @@
       >
         Edit profile
       </button>
-      <button mat-raised-button (click)="openRemoveUserDialog()" color="warn">
+      <button
+        class="delete-button"
+        mat-raised-button
+        (click)="deleteUser()"
+        color="warn"
+      >
         Delete profile
       </button>
     </mat-card-actions>
