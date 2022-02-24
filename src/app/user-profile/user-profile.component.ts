@@ -44,11 +44,13 @@ export class UserProfileComponent implements OnInit {
 
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
-    this.fetchApiData.getUserProfile().subscribe((res: any) => {
-      this.favMovies = res.FavoriteMovies;
-      console.log(this.favMovies);
-      return this.favMovies;
-    });
+    if (user) {
+      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+        this.favMovies = res.FavoriteMovies;
+        console.log(this.favMovies);
+        return this.favMovies;
+      });
+    }
   }
 
   removeFavMovies(MovieID: string, title: string): void {

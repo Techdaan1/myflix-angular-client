@@ -4,6 +4,11 @@
   font-size: 20px;
 }
 
+.nav-bar {
+  position: sticky;
+  width: 100%;
+}
+
 .tool-bar {
   justify-content: flex-end;
   gap: 36px;
