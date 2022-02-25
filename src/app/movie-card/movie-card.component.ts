@@ -1,3 +1,7 @@
+/**
+ * The Moviecard component renders the movies collection retreived from the myFlix database.
+ * @module MovieCardComponent
+ */
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,6 +32,11 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * use Api call to get data of all movies
+   * @function getAllMovies
+   * @return movies in json format
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -36,7 +45,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openGenreView(name: string, description: string): void {
+  /**
+   *open a dialog to display the GenreViewComponent
+   * @param name {string}
+   * @param description {string}
+   */
+  openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreViewComponent, {
       data: {
         name,
@@ -46,14 +60,20 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openDirectorView(name: string, bio: string, birthdate: Date): void {
+  /**
+   *open a dialog to display the DirectorViewComponent
+   * @param name {string}
+   * @param bio {string}
+   * @param birthdate {date}
+   */
+  openDirectorDialog(name: string, bio: string, birthdate: Date): void {
     this.dialog.open(DirectorViewComponent, {
       data: { name, bio, birthdate },
       width: '500px',
     });
   }
 
-  openMovieDescription(name: string, description: string): void {
+  openMovieDescDialog(name: string, description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: { name, description },
       width: '500px',
