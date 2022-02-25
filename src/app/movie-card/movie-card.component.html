@@ -22,7 +22,7 @@
         class="genre-class"
         mat-button
         color="primary"
-        (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
+        (click)="openGenreView(movie.Genre.Name, movie.Genre.Description)"
       >
         Genre
       </button>
@@ -32,7 +32,7 @@
         mat-button
         color="primary"
         (click)="
-          openDirectorDialog(
+          openDirectorView(
             movie.Director.Name,
             movie.Director.Bio,
             movie.Director.Birthdate
@@ -45,7 +45,7 @@
         class="movie-info-class"
         mat-button
         color="primary"
-        (click)="openMovieDescDialog(movie.Title, movie.Description)"
+        (click)="openMovieDescription(movie.Title, movie.Description)"
       >
         Movie info
       </button>

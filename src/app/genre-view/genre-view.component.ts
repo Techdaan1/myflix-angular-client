@@ -1,8 +1,3 @@
-/**
- * The Genre component renders information about genres.
- * @module GenreViewComponent
- */
-
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,10 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./genre-view.component.scss'],
 })
 export class GenreViewComponent implements OnInit {
-  /**
-   *
-   * @param data
-   */
   constructor(
     public fetchApiData: FetchApiDataService,
     @Inject(MatDialog)
