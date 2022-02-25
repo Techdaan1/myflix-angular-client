@@ -14,7 +14,11 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+<<<<<<< HEAD
   Favorites: any[] = [];
+=======
+  FavoriteMovies: any[] = [];
+>>>>>>> parent of 87bf43a (Revert "Update")
   user: any[] = [];
 
   constructor(
@@ -63,8 +67,13 @@ export class MovieCardComponent implements OnInit {
   getFavoriteMovies(): void {
     const user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile().subscribe((resp: any) => {
+<<<<<<< HEAD
       this.Favorites = resp.FavoriteMovies;
       console.log(this.Favorites);
+=======
+      this.FavoriteMovies = resp.FavoriteMovies;
+      console.log(this.FavoriteMovies);
+>>>>>>> parent of 87bf43a (Revert "Update")
     });
   }
 
@@ -78,7 +87,17 @@ export class MovieCardComponent implements OnInit {
     return this.getFavoriteMovies();
   }
 
+<<<<<<< HEAD
   removeFavoriteMovie(id: string): void {
+=======
+  /**
+   * use API endpoint to remove the favorite movie of the user
+   * @function deleteFavoriteMovies
+   * @param id {string}
+   * @returns update users data in json format
+   */
+  removeFavoriteMovies(id: string): void {
+>>>>>>> parent of 87bf43a (Revert "Update")
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       console.log(resp);
       this.snackBar.open(`${id} has been removed from your favorites!`, 'OK', {
@@ -89,6 +108,7 @@ export class MovieCardComponent implements OnInit {
     return this.getFavoriteMovies();
   }
 
+<<<<<<< HEAD
   isFavorite(id: string): boolean {
     return this.Favorites.some((movie) => movie._id === id);
   }
@@ -96,5 +116,19 @@ export class MovieCardComponent implements OnInit {
     this.isFavorite(movie._id)
       ? this.removeFavoriteMovie(movie._id)
       : this.addFavoriteMovies(movie._id, movie.Title);
+=======
+  /**
+   * check if the movie is a favorite of the user
+   * @param id {string}
+   * @returns true or false
+   */
+  isFavorite(id: string): boolean {
+    return this.FavoriteMovies.some((movie) => movie._id === id);
+  }
+  toggleFavorite(movie: any): void {
+    this.isFavorite(movie._id)
+      ? this.removeFavoriteMovies(movie._id)
+      : this.addFavoriteMovies(movie._id);
+>>>>>>> parent of 87bf43a (Revert "Update")
   }
 }
