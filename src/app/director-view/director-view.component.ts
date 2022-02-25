@@ -1,3 +1,8 @@
+/**
+ * The Director component renders information about directors
+ * @module DirectorViewComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,6 +15,11 @@ import { Data } from '@angular/router';
 })
 export class DirectorViewComponent implements OnInit {
   constructor(
+    /**
+     *
+     * @param data
+     */
+
     public fetchApiData: FetchApiDataService,
     @Inject(MatDialog)
     public data: {
