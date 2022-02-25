@@ -8,6 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./movie-description.component.scss'],
 })
 export class MovieDescriptionComponent implements OnInit {
+  /**
+   *
+   * @param data
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     @Inject(MatDialog)

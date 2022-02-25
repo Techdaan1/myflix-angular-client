@@ -19,14 +19,23 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Redirect to user profile.
+   */
   toProfile(): void {
     this.router.navigate(['users']);
   }
 
+  /**
+   * Redirect to welcome screen.
+   */
   toMovies(): void {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * log out user and clear localstorage. Then redirect to welcome screen.
+   */
   logOut(): void {
     localStorage.clear();
     this.snackBar.open('You have been successfully logged out', 'Ok', {

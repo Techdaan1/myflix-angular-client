@@ -31,6 +31,13 @@ export class UserProfileComponent implements OnInit {
     this.getFavoriteMovies();
   }
 
+  /**
+   * call API endpoint to get user info
+   * @function getUserProfile
+   * @param Username
+   * @return users data in json format
+   */
+
   getUserProfile(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -42,6 +49,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * get users FavoriteMovies from the users data
+   */
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -53,6 +63,12 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * use API end-point to remove user favorite
+   * @function deleteFavoriteMovies
+   * @param Id {string}
+   * @returns updated users data in json format
+   */
   removeFavoriteMovies(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       console.log(resp);
@@ -64,6 +80,12 @@ export class UserProfileComponent implements OnInit {
     return this.favMovies;
   }
 
+  /**
+   * call API endpoint to remove the current user
+   * @function deleteUserProfile
+   * @param Username {any}
+   * @return that the account has been removed
+   */
   deleteUser(): void {
     this.fetchApiData.deleteUserProfile().subscribe(() => {
       this.snackBar.open(`${this.Username} has been removed!`, 'OK', {
@@ -74,18 +96,34 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['welcome']);
   }
 
+  /**
+   * open a dialog to edit the profile of the user
+   * @module EditProfileFormComponent
+   */
   openEditUserDialog(): void {
     this.dialog.open(UserEditComponent, {
       width: '280px',
     });
   }
 
+  /**
+   *open a dialog to display the GenreViewComponent
+   * @param name {string}
+   * @param description {string}
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreViewComponent, {
       data: { name: name, description: description },
       width: '300px',
     });
   }
+
+  /**
+   * open a dialog to display the DirectorViewComponent
+   * @param name {string}
+   * @param bio {string}
+   * @param birthdate {string}
+   */
 
   openDirectorDialog(name: string, bio: string, birthdate: string): void {
     this.dialog.open(DirectorViewComponent, {
@@ -94,6 +132,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * open a dialog to display the MovieDescriptionComponent
+   * @param title {string}
+   * @param description {string}
+   */
   openMovieDescDialog(title: string, description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: { title: title, description: description },

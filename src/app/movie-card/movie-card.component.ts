@@ -98,12 +98,12 @@ export class MovieCardComponent implements OnInit {
 
   /**
    * use API endpoint to let user add favorite movie
-   * @function addFavoriteMovie
+   * @function addFavoriteMovies
    * @param id {string}
    * @returns an array of the movie object in json format
    */
   addFavoriteMovies(id: string): void {
-    this.fetchApiData.addFavoriteMovies(id).subscribe((resp: any) => {
+    this.fetchApiData.addFavoriteMovies(id).subscribe(() => {
       this.snackBar.open(`${id} has been added to your Watchlist!`, 'OK', {
         duration: 4000,
       });
@@ -112,7 +112,13 @@ export class MovieCardComponent implements OnInit {
     return this.getFavoriteMovies();
   }
 
-  removeFavoriteMovie(id: string): void {
+  /**
+   * use API end-point to remove user favorite
+   * @function deleteFavoriteMovies
+   * @param Id {string}
+   * @returns favorite movies has been updated in json format
+   */
+  removeFavoriteMovies(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       console.log(resp);
       this.snackBar.open(`${id} has been removed from your favorites!`, 'OK', {
@@ -123,12 +129,26 @@ export class MovieCardComponent implements OnInit {
     return this.getFavoriteMovies();
   }
 
+  /**
+   * is movie already in favoritelist of user
+   * @param id {string}
+   * @returns true or false
+   */
   isFavorite(id: string): boolean {
     return this.Favorites.some((movie) => movie._id === id);
   }
+
+  /**
+   * add or remove favorite movie
+   * if the movie is not on the favorite list, call
+   * @function addFavoriteMovies
+   * if the movie is already on the user favorite list, call
+   * @function removeFavoriteMovies
+   * @param movie {any}
+   */
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
-      ? this.removeFavoriteMovie(movie._id)
+      ? this.removeFavoriteMovies(movie._id)
       : this.addFavoriteMovies(movie._id);
   }
 }
