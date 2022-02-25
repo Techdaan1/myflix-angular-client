@@ -34,8 +34,8 @@ export class UserProfileComponent implements OnInit {
   getUserProfile(): void {
     const user = localStorage.getItem('user');
     if (user) {
-      this.fetchApiData.getUserProfile().subscribe((resp: any) => {
-        this.user = resp;
+      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+        this.user = res;
         console.log(this.user);
         return this.user;
       });
@@ -45,17 +45,17 @@ export class UserProfileComponent implements OnInit {
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
     if (user) {
-      this.fetchApiData.getUserProfile().subscribe((resp: any) => {
-        this.favMovies = resp.FavoriteMovies;
+      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+        this.favMovies = res.FavoriteMovies;
         console.log(this.favMovies);
         return this.favMovies;
       });
     }
   }
 
-  removeFavoriteMovies(id: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
-      console.log(resp);
+  removeFavMovies(MovieID: string, title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((res: any) => {
+      console.log(res);
       this.snackBar.open('Movie has been removed from favorites', 'OK', {
         duration: 2000,
       });

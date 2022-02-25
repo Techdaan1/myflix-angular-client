@@ -9,13 +9,6 @@ import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://myflix-application-2021.herokuapp.com/';
-export interface User {
-  _id: string;
-  FavoriteMovies: Array<string>;
-  Username: string;
-  Email: string;
-  Birthdate: Date;
-}
 
 @Injectable({
   providedIn: 'root',

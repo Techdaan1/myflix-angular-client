@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  FavoriteMovies: any[] = [];
+  favorites: any[] = [];
   user: any[] = [];
 
   constructor(
@@ -93,8 +93,8 @@ export class MovieCardComponent implements OnInit {
   getFavoriteMovies(): void {
     const user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile().subscribe((resp: any) => {
-      this.FavoriteMovies = resp.FavoriteMovies;
-      console.log(this.FavoriteMovies);
+      this.favorites = resp.FavoriteMovies;
+      console.log(this.favorites);
     });
   }
 
@@ -121,7 +121,7 @@ export class MovieCardComponent implements OnInit {
    * @param id {string}
    * @returns update users data in json format
    */
-  removeFavoriteMovies(id: string): void {
+  removeFavoriteMovie(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
       console.log(resp);
       this.snackBar.open(`${id} has been removed from your favorites!`, 'OK', {
@@ -133,16 +133,16 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * check if the movie is a favorite of the user
+   * check if the movie is the user's favorite?
    * @param id {string}
    * @returns true or false
    */
   isFavorite(id: string): boolean {
-    return this.FavoriteMovies.some((movie) => movie._id === id);
+    return this.favorites.some((movie) => movie._id === id);
   }
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
-      ? this.removeFavoriteMovies(movie._id)
+      ? this.removeFavoriteMovie(movie._id)
       : this.addFavoriteMovies(movie._id);
   }
 }
