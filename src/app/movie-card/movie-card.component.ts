@@ -73,6 +73,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * open a dialog to display the MovieDescriptionComponent
+   * @param title {string}
+   * @param description {string}
+   */
   openMovieDescDialog(name: string, description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: { name, description },
@@ -80,6 +85,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * get the favorite movieslist of the user
+   */
   getFavoriteMovies(): void {
     const user = localStorage.getItem('username');
     this.fetchApiData.getUserProfile().subscribe((resp: any) => {
@@ -88,9 +96,15 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addFavoriteMovies(id: string, title: string): void {
+  /**
+   * use API endpoint to let user add favorite movie
+   * @function addFavoriteMovie
+   * @param id {string}
+   * @returns an array of the movie object in json format
+   */
+  addFavoriteMovies(id: string): void {
     this.fetchApiData.addFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open(`${title} has been added to your Watchlist!`, 'OK', {
+      this.snackBar.open(`${id} has been added to your Watchlist!`, 'OK', {
         duration: 4000,
       });
       this.ngOnInit();
@@ -115,6 +129,6 @@ export class MovieCardComponent implements OnInit {
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
       ? this.removeFavoriteMovie(movie._id)
-      : this.addFavoriteMovies(movie._id, movie.Title);
+      : this.addFavoriteMovies(movie._id);
   }
 }

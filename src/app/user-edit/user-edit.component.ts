@@ -1,6 +1,6 @@
 /**
  * The UserEditComponent is used to render information about the user and edit it.
- * @module EditProfileFormComponent
+ * @module UserEditComponent
  */
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';

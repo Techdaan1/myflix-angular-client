@@ -8,6 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./genre-view.component.scss'],
 })
 export class GenreViewComponent implements OnInit {
+  /**
+   *
+   * @param data
+   */
   constructor(
     public fetchApiData: FetchApiDataService,
     @Inject(MatDialog)
