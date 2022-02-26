@@ -102,9 +102,9 @@ export class MovieCardComponent implements OnInit {
    * @param id {string}
    * @returns an array of the movie object in json format
    */
-  addFavoriteMovies(id: string): void {
-    this.fetchApiData.addFavoriteMovies(id).subscribe(() => {
-      this.snackBar.open(`${id} has been added to your Watchlist!`, 'OK', {
+  addFavoriteMovies(movieID: string): void {
+    this.fetchApiData.addFavoriteMovies(movieID).subscribe(() => {
+      this.snackBar.open(`${movieID} has been added to your favorites!`, 'OK', {
         duration: 4000,
       });
       this.ngOnInit();
@@ -118,12 +118,16 @@ export class MovieCardComponent implements OnInit {
    * @param Id {string}
    * @returns favorite movies has been updated in json format
    */
-  removeFavoriteMovies(id: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
+  removeFavoriteMovies(movieID: string): void {
+    this.fetchApiData.deleteFavoriteMovies(movieID).subscribe((resp: any) => {
       console.log(resp);
-      this.snackBar.open(`${id} has been removed from your favorites!`, 'OK', {
-        duration: 4000,
-      });
+      this.snackBar.open(
+        `${movieID} has been removed from your favorites!`,
+        'OK',
+        {
+          duration: 4000,
+        }
+      );
       this.ngOnInit();
     });
     return this.getFavoriteMovies();
@@ -134,8 +138,8 @@ export class MovieCardComponent implements OnInit {
    * @param id {string}
    * @returns true or false
    */
-  isFavorite(id: string): boolean {
-    return this.Favorites.some((movie) => movie._id === id);
+  isFavorite(movieID: string): boolean {
+    return this.Favorites.some((movie) => movie._id === movieID);
   }
 
   /**
