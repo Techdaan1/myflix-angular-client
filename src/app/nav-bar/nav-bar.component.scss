@@ -5,7 +5,10 @@
 }
 
 .nav-bar {
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
   width: 100%;
 }
 
