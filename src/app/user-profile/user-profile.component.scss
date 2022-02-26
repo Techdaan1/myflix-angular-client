@@ -2,6 +2,7 @@
   padding-top: 100px;
   background-color: blue;
   height: 50%;
+  border: 1px solid white;
 }
 
 .usercard {
@@ -49,13 +50,17 @@ p {
   white-space: nowrap;
 }
 
+.favorites-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
 .user-fav {
   padding-top: 10px;
   text-align: center;
   font-size: 25px;
   padding-bottom: 20%;
-}
-
-.fav.title {
-  justify-content: center;
 }
