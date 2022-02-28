@@ -14,8 +14,8 @@ import { MatDialogRef } from '@angular/material/dialog';
  */
 export class DirectorViewComponent implements OnInit {
   constructor(
-    @Inject(MatDialogRef)
     public fetchApiData: FetchApiDataService,
+    @Inject(MatDialogRef)
     public data: {
       name: string;
       bio: string;
