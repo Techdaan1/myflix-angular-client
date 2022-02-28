@@ -1,3 +1,7 @@
+/**
+ * The MovieDescriptionComponent is used to render descriptions about the movies.
+ * @module MovieDescriptionComponent
+ */
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';

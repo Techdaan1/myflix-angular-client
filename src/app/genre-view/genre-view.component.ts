@@ -1,3 +1,8 @@
+/**
+ * The GenreViewComponent is used to render information about the genres.
+ * @module GenreViewComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';

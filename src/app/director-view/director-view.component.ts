@@ -1,3 +1,8 @@
+/**
+ * The DirectorViewComponent is used to render information about the directors.
+ * @module DirectorViewComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 // You'll use this import to close the dialog on success

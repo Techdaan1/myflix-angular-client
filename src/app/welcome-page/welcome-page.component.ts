@@ -1,3 +1,8 @@
+/**
+ * The WelcomePageComponent is the first page you see. Here you have the option to register or login.
+ * @module WelcomePageComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';

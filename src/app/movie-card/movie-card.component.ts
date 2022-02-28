@@ -113,7 +113,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * use API end-point to remove user favorite
+   * use API endpoint to remove user favorite
    * @function deleteFavoriteMovies
    * @param Id {string}
    * @returns favorite movies has been updated in json format

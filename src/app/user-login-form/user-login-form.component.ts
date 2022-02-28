@@ -1,3 +1,8 @@
+/**
+ * The UserLoginFormComponent is used to login users.
+ * @module UserLoginFormComponent
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';

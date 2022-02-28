@@ -1,3 +1,8 @@
+/**
+ * The UserProfileComponent is used to view the user profile.
+ * @module UserProfileComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';

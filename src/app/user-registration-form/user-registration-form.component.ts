@@ -1,3 +1,7 @@
+/**
+ * The UserRegistrationFormComponent is used to register a new user.
+ * @module UserRegistrationFormComponent
+ */
 import { Component, OnInit, Input } from '@angular/core';
 
 // You'll use this import to close the dialog on success
