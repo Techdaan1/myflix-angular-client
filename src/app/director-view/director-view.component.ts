@@ -6,7 +6,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 // You'll use this import to close the dialog on success
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-director-view',
@@ -20,7 +20,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DirectorViewComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
-    @Inject(MatDialogRef)
+    @Inject(MAT_DIALOG_DATA)
     public data: {
       name: string;
       bio: string;
