@@ -21,14 +21,12 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-
 import { RouterModule, Routes } from '@angular/router';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { MovieDescriptionComponent } from './movie-description/movie-description.component';
-import { RemoveUserComponent } from './remove-user/remove-user.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -50,7 +48,6 @@ const appRoutes: Routes = [
     GenreViewComponent,
     DirectorViewComponent,
     MovieDescriptionComponent,
-    RemoveUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +64,7 @@ const appRoutes: Routes = [
     FormsModule,
     MatToolbarModule,
     RouterModule.forRoot(appRoutes),
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

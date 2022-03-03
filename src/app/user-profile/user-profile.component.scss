@@ -36,15 +36,18 @@ p {
 }
 
 .favorite-card {
-  padding-top: 100px;
+  margin: 10px;
+  width: 200px;
+  background-color: white;
 }
 
 .favorites-container {
-  width: 100%;
-  height: 100%;
   background-color: black;
   color: white;
   border: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .user-fav {
@@ -52,4 +55,39 @@ p {
   text-align: center;
   font-size: 25px;
   padding-bottom: 20%;
+}
+
+.img-container img {
+  width: 185px;
+  height: 284px;
+  margin: 7px;
+}
+
+.fav-header {
+  justify-content: center;
+  text-align: center;
+  height: 70px;
+}
+.fav-title {
+  font-size: 20px;
+}
+.fav-subtitle {
+  font-size: 12px;
+}
+.fav-action {
+  margin-top: 10px;
+  height: 10px;
+  display: flex;
+}
+#fav-action-btn {
+  color: blue;
+}
+.mat-icon-button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
+.remove-btn {
+  color: red;
 }

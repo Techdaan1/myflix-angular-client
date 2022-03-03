@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 const apiUrl = 'https://myflix-application-2021.herokuapp.com/';
 export interface User {
   _id: string;
-  FavoriteMovies: Array<string>;
+  Favorites: Array<string>;
   Username: string;
   Email: string;
   Birthdate: Date;
@@ -123,9 +123,8 @@ export class FetchApiDataService {
    * @param username
    * @returns users information in json format
    */
-  getUserProfile(): Observable<any> {
+  getUserProfile(username: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
     return this.http
       .get(apiUrl + `users/${username}`, {
         headers: new HttpHeaders({
@@ -140,9 +139,8 @@ export class FetchApiDataService {
    * @param username
    * @returns a list of the favorite movies of the user in json format
    */
-  getFavoriteMovies(): Observable<any> {
+  getFavoriteMovies(username: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
     return this.http
       .get(apiUrl + `users/${username}`, {
         headers: new HttpHeaders({
@@ -154,14 +152,14 @@ export class FetchApiDataService {
 
   /**
    * call api endpoint to add a movie to the favorite mobvielist of user
-   * @param Title
+   * @param MovieID
    * @returns the favorite movielist of user in json format
    */
-  addFavoriteMovies(Title: string): Observable<any> {
+  addFavoriteMovies(MovieID: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     return this.http
-      .post(apiUrl + `users/${username}/movies/${Title}`, null, {
+      .post(apiUrl + `users/${username}/movies/${MovieID}`, null, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -174,7 +172,7 @@ export class FetchApiDataService {
    * @param MovieID {any}
    * @returns updated user's information after removed a movie from the list in json format
    */
-  deleteFavoriteMovies(MovieID: string): Observable<any> {
+  deleteFavoriteMovies(MovieID: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     return this.http
@@ -194,9 +192,9 @@ export class FetchApiDataService {
    */
   editUserProfile(userCredentials: object): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const user = localStorage.getItem('username');
     return this.http
-      .put(apiUrl + `users/${username}`, userCredentials, {
+      .put(apiUrl + `users/${user}`, userCredentials, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -211,9 +209,9 @@ export class FetchApiDataService {
    */
   public deleteUserProfile(): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const user = localStorage.getItem('username');
     return this.http
-      .delete(apiUrl + `users/${username}`, {
+      .delete(apiUrl + `users/${user}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

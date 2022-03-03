@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreViewComponent } from '../genre-view/genre-view.component';
 import { DirectorViewComponent } from '../director-view/director-view.component';
 import { MovieDescriptionComponent } from '../movie-description/movie-description.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -24,8 +23,7 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar,
-    public router: Router
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -90,7 +88,7 @@ export class MovieCardComponent implements OnInit {
    */
   getFavoriteMovies(): void {
     const user = localStorage.getItem('username');
-    this.fetchApiData.getUserProfile().subscribe((resp: any) => {
+    this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
       this.Favorites = resp.FavoriteMovies;
       console.log(this.Favorites);
     });
@@ -102,9 +100,9 @@ export class MovieCardComponent implements OnInit {
    * @param id {string}
    * @returns an array of the movie object in json format
    */
-  addFavoriteMovies(movieID: string): void {
+  addFavoriteMovies(movieID: string, title: string): void {
     this.fetchApiData.addFavoriteMovies(movieID).subscribe(() => {
-      this.snackBar.open(`${movieID} has been added to your favorites!`, 'OK', {
+      this.snackBar.open(`${title} has been added to your favorites!`, 'OK', {
         duration: 4000,
       });
       this.ngOnInit();
@@ -118,11 +116,11 @@ export class MovieCardComponent implements OnInit {
    * @param Id {string}
    * @returns favorite movies has been updated in json format
    */
-  removeFavoriteMovies(movieID: string): void {
+  removeFavoriteMovies(movieID: string, title: string): void {
     this.fetchApiData.deleteFavoriteMovies(movieID).subscribe((resp: any) => {
       console.log(resp);
       this.snackBar.open(
-        `${movieID} has been removed from your favorites!`,
+        `${title} has been removed from your favorites!`,
         'OK',
         {
           duration: 4000,
@@ -152,7 +150,7 @@ export class MovieCardComponent implements OnInit {
    */
   toggleFavorite(movie: any): void {
     this.isFavorite(movie._id)
-      ? this.removeFavoriteMovies(movie._id)
-      : this.addFavoriteMovies(movie._id);
+      ? this.removeFavoriteMovies(movie._id, movie.Title)
+      : this.addFavoriteMovies(movie._id, movie.Title);
   }
 }

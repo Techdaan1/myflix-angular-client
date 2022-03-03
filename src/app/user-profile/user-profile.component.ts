@@ -4,7 +4,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service';
+import { FetchApiDataService, User } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -21,8 +21,8 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 })
 export class UserProfileComponent implements OnInit {
   user: any = {};
-  Username = localStorage.getItem('user');
-  favMovies: any = {};
+  Username = localStorage.getItem('username');
+  favMovies: any[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -33,7 +33,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
-    this.getFavoriteMovies();
   }
 
   /**
@@ -46,7 +45,7 @@ export class UserProfileComponent implements OnInit {
   getUserProfile(): void {
     const user = localStorage.getItem('user');
     if (user) {
-      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+      this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
         this.user = res;
         console.log(this.user);
         return this.user;
@@ -60,7 +59,7 @@ export class UserProfileComponent implements OnInit {
   getFavoriteMovies(): void {
     const user = localStorage.getItem('user');
     if (user) {
-      this.fetchApiData.getUserProfile().subscribe((res: any) => {
+      this.fetchApiData.getUserProfile(user).subscribe((res: any) => {
         this.favMovies = res.FavoriteMovies;
         console.log(this.favMovies);
         return this.favMovies;
@@ -82,7 +81,6 @@ export class UserProfileComponent implements OnInit {
       });
       this.ngOnInit();
     });
-    return this.favMovies;
   }
 
   /**
