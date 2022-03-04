@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-edit.component.scss'],
 })
 export class UserEditComponent implements OnInit {
-  Username = localStorage.getItem('username');
+  Username = localStorage.getItem('user');
   user: any = {};
 
   constructor(
@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
    * get user info
    */
   getUser(): void {
-    const user = localStorage.getItem('username');
+    const user = localStorage.getItem('user');
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
       this.user = resp;
     });
