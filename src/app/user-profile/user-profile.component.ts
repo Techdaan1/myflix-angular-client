@@ -4,7 +4,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService, User } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
