@@ -28,6 +28,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getFavoriteMovies();
   }
 
   /**
@@ -87,7 +88,7 @@ export class MovieCardComponent implements OnInit {
    * get the favorite movieslist of the user
    */
   getFavoriteMovies(): void {
-    const user = localStorage.getItem('username');
+    const user = localStorage.getItem('user');
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
       this.Favorites = resp.FavoriteMovies;
       console.log(this.Favorites);
