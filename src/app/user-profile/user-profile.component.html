@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="user-profile">
   <mat-card class="usercard">
-    <mat-card-header>
+    <mat-card-header class="profile-title">
       <mat-card-title>My Profile</mat-card-title>
     </mat-card-header>
     <mat-card-content class="usercard-greeting"
@@ -10,8 +10,11 @@
 
     <mat-card-content class="usercard-content">
       <p><b>Username:</b> {{ user.Username }}</p>
-      <p><b>Email:</b> {{ user.Email }}</p>
-      <p><b>Birthdate:</b> {{ user.Birthday }}</p>
+      <p>
+        <b>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+        {{ user.Email }}
+      </p>
+      <p><b>Birthdate:&nbsp;</b> {{ user.Birthday }}</p>
     </mat-card-content>
     <mat-card-actions class="usercard-actions">
       <button
@@ -35,9 +38,8 @@
     </mat-card-actions>
   </mat-card>
 </div>
-
+<h2 class="user-fav">My Favorite Movies</h2>
 <div class="favorites-container">
-  <h2 class="user-fav">My Favorite Movies</h2>
   <mat-card
     *ngFor="let favorite of favMovies; let i = index"
     class="favorite-card"
@@ -55,15 +57,15 @@
       <button
         mat-button
         color="accent"
-        id="fav-action-btn"
+        class="fav-action-btn"
         (click)="openMovieDescDialog(favorite.Title, favorite.Description)"
       >
-        Movie description
+        Movie info
       </button>
       <button
         mat-button
         color="accent"
-        id="fav-action-btn"
+        class="fav-action-btn"
         (click)="
           openGenreDialog(favorite.Genre.Name, favorite.Genre.Description)
         "
@@ -73,7 +75,7 @@
       <button
         mat-button
         color="accent"
-        id="fav-action-btn"
+        class="fav-action-btn"
         (click)="
           openDirectorDialog(
             favorite.Director.Name,
@@ -86,7 +88,10 @@
       </button>
     </mat-card-actions>
 
-    <button mat-icon-button (click)="deleteUser()">
+    <button
+      mat-icon-button
+      (click)="removeFavoriteMovies(favorite._id, favorite.title)"
+    >
       <mat-icon class="remove-btn">remove_circle</mat-icon>
     </button>
   </mat-card>

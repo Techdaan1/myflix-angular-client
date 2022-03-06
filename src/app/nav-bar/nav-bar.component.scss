@@ -5,15 +5,13 @@
 }
 
 .nav-bar {
-  position: fixed;
+  position: static;
   width: 100%;
-  overflow: hidden;
   top: 0;
-  width: 100%;
 }
 
 .tool-bar {
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 36px;
   border-bottom: 1px solid;
   color: white;

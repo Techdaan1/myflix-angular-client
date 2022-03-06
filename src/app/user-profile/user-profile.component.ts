@@ -33,6 +33,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.getFavoriteMovies();
   }
 
   /**
@@ -73,12 +74,16 @@ export class UserProfileComponent implements OnInit {
    * @param Id {string}
    * @returns updated users data in json format
    */
-  removeFavoriteMovies(id: string): void {
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((resp: any) => {
+  removeFavoriteMovies(movieID: string, title: string): void {
+    this.fetchApiData.deleteFavoriteMovies(movieID).subscribe((resp: any) => {
       console.log(resp);
-      this.snackBar.open(`${id} has been removed from your favorites!`, 'OK', {
-        duration: 2000,
-      });
+      this.snackBar.open(
+        `${title} has been removed from your favorites!`,
+        'OK',
+        {
+          duration: 2000,
+        }
+      );
       this.ngOnInit();
     });
   }
